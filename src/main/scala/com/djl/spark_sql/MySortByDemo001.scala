@@ -6,7 +6,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 /**
   * 自定义的排序规则
   */
-object MySortByDemo {
+object MySortByDemo001 {
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf().setAppName("MySortByDemo").setMaster("local[*]")
     val sc = new SparkContext(conf)
@@ -33,7 +33,7 @@ object MySortByDemo {
       User(x._1, x._2, x._3, x._4)
     }, false)
     println(ret2.collect().toBuffer)
-
+    sc.stop()
   }
 
   /*case 描述类相当于静态类*/

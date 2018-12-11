@@ -1,6 +1,6 @@
 package com.djl
 
-import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.{Partitioner, SparkConf, SparkContext}
 
 object Transformation {
   def main(args: Array[String]): Unit = {
@@ -53,5 +53,16 @@ object Transformation {
     val st4 = st1.cartesian(st2)
     
 
+  }
+
+  /**
+    * 自定义分区器
+    */
+  class MyPartition extends org.apache.spark.Partitioner{
+    override def numPartitions: Int = 3 //自定义分区数量
+    override def getPartition(key: Any): Int = {
+      //分区规则
+      0
+    }
   }
 }

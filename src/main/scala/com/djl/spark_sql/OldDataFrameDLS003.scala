@@ -8,7 +8,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 /**
   * DataFrame的DLS风格 自身的API
   */
-object DataFrameDLS {
+object OldDataFrameDLS003 {
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf().setAppName("DataFrameDLS").setMaster("local[*]")
     val sc = new SparkContext(conf)
@@ -44,6 +44,7 @@ object DataFrameDLS {
     val result: Dataset[Row] = pdf.select("id", "name", "age").filter(pdf.col("age") > 21)
     result.show()
     //result.write.json("hdfs://master:9000/spark_learn/spark_data/spark_sql/out_data")
+    sc.stop()
   }
 
 }

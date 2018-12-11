@@ -8,9 +8,9 @@ import org.apache.spark.{SparkConf, SparkContext}
 /**
   * 使用spark-sql 1.6旧的API来自定义的排序规则
   */
-object OldSqlSortByDemo {
+object OldSqlSortByDemo002 {
   def main(args: Array[String]): Unit = {
-    val conf = new SparkConf().setAppName("MySortByDemo").setMaster("local[*]")
+    val conf = new SparkConf().setAppName("OldSqlSortByDemo002").setMaster("local[*]")
     val sc = new SparkContext(conf)
 
     // id,name,age,颜值
@@ -31,7 +31,7 @@ object OldSqlSortByDemo {
     ////导入隐饰转换操作，否则RDD无法调用toDF方法
     import sqlContext.implicits._
     //将RDD转化成DataFrame
-    val pdf = ret.toDF()
+    val pdf: DataFrame = ret.toDF()
     //将dataframe注册成hive的表 ()
     pdf.registerTempTable("t_user")
     //sql方法是一个transformation 不会执行任务再生成一个DataFrame
