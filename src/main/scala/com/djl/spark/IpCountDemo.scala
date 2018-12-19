@@ -38,10 +38,10 @@ object IpCountDemo {
         return middle
       }
       if (ip > (lines(middle)._2)) {
-        start += 1
+        start = middle + 1
       }
       if (ip < (lines(middle)._1)) {
-        end -= 1
+        end = middle - 1
       }
     }
     index
@@ -90,8 +90,8 @@ object IpCountDemo {
     //println(result.toBuffer)
     //将数据存储到数据库中 , 在executor端将数据写入到数据库中
     //result.foreach(wd => {
-      //一条条去处理，写入mysql ，这样不可行。每写一条创建一个JDBC连接，消耗太多资源
-   // })
+    //一条条去处理，写入mysql ，这样不可行。每写一条创建一个JDBC连接，消耗太多资源
+    // })
 
     //一个分区处理，一个分区就是一个迭代器
     result.foreachPartition(part => {
